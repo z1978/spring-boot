@@ -1,0 +1,33 @@
+##################################################
+# This is a spring batch project
+##################################################
+Spring Batchの基礎まとめ
+http://qiita.com/magaya0403/items/f662bd913f802272ae64
+https://spring.io/guides/gs/batch-processing/
+
+# Github
+https://github.com/z1978/zac-spring-boot-batch.git
+
+#--------------------------------------------------
+# Reference material
+#--------------------------------------------------
+Maven2、Maven3のPOMの書き方まとめ〜全体概要編〜
+http://tanakakns.hatenablog.com/entry/20130509/1368091668
+
+
+https://github.com/muumin/spring-boot-batch-sample
+https://github.com/megaya/spring_boot_batch_sample.git
+# MySQL
+drop database spring_batch_test
+
+# 代码覆盖率
+比较流行的工具是Emma和Jacoco,Ecliplse插件有eclemma。
+eclemma2.0之前采用的是Emma，之后采用的是Jacoco。
+这里主要介绍一下Jacoco。Eclmama由于是Eclipse插件，所以非常易用，就不多做介绍了。
+
+Jacoco
+Jacoco可以嵌入到Ant、Maven中，也可以使用Java Agent技术监控任意Java程序，
+也可以使用Java Api来定制功能。
+Jacoco会监控JVM中的调用，生成监控结果（默认保存在jacoco.exec文件中），
+然后分析此结果，配合源代码生成覆盖率报告。需要注意的是：监控和分析这两步，
+必须使用相同的Class文件，否则由于Class不同，而无法定位到具体的方法，导致覆盖率均为0%。

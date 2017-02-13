@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 数据库驱动包位置 -->
+	<classPathEntry	location="C:\Users\zhangningbo\.m2\repository\mysql\mysql-connector-java\5.1.30\mysql-connector-java-5.1.30.jar" />
+	<!--
+	<classPathEntry	location="/Users/zhangningbo/.m2/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />
+	-->
+	
+	<context id="context1">
+		<commentGenerator>
+			<!-- 是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/spring_batch_test" userId="root"
+			password="hogehoge" />
+			
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.example.entity"
+			targetProject="zac-spring-boot-batch/src/main/java" />
+		<!-- 生成的映射文件报名和位置 -->
+		<sqlMapGenerator targetPackage="com.example.mapper"
+			targetProject="zac-spring-boot-batch/src/main/java" />
+
+		<!-- 生成DAO的包名和位置和类型(ANNOTATEDMAPPER/XMLMAPPER) -->
+		<javaClientGenerator targetPackage="com.example.dao"
+			targetProject="zac-spring-boot-batch/src/main/java" type="ANNOTATEDMAPPER" />
+		<!-- 要生成的那些表(更改tableName 和domainObjectName 就可以了) -->
+		<table schema="spring_batch_test" tableName="user"
+			domainObjectName="User" enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<columnOverride column="id" property="id" />
+			<columnOverride column="first_name" property="firstName" />
+			<columnOverride column="last_name" property="lastName" />
+			<columnOverride column="age" property="age" />
+			<columnOverride column="create_time" property="createTime" />
+			<columnOverride column="update_time" property="updateTime" />
+		</table>
+	</context>
+</generatorConfiguration>  

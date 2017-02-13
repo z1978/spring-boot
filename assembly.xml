@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- assembly 整个机能未实现 TODO -->
+<!-- Document : assembly.xml Created on:20170210 Author:zac -->
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+	<id>runtime-dist</id>
+	<formats>
+		<!--format>zip</format -->
+		<format>tar.gz</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<dependencySets>
+		<dependencySet>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+			<outputDirectory>lib</outputDirectory>
+			<fileMode>0644</fileMode>
+		</dependencySet>
+	</dependencySets>
+	
+	<files>
+		<file>
+			<source>src/main/bin/env/${app.env}/env.sh</source>
+			<destName>env.sh</destName>
+			<outputDirectory>bin</outputDirectory>
+			<filtered>false</filtered>
+			<fileMode>0644</fileMode>
+			<lineEnding>unix</lineEnding>
+		</file>
+		<!--file>
+			<source>src/main/bin/runner.sh</source>
+			<destName>runner.sh</destName>
+			<outputDirectory>bin</outputDirectory>
+			<filtered>true</filtered>
+			<fileMode>0744</fileMode>
+			<lineEnding>unix</lineEnding>
+		</file-->
+	</files>
+	<fileSets>
+	 	<fileSet>
+			<directory>src/main/bin</directory>
+			<outputDirectory>bin</outputDirectory>
+			<fileMode>0744</fileMode>
+            <filtered>true</filtered>
+		</fileSet>
+		<!-- Integration test wire mock data folder -->
+		<fileSet>
+			<directory>src/test/resources/testWiremockData</directory>
+			<outputDirectory>testWiremockData</outputDirectory>
+			<fileMode>0644</fileMode>
+            <filtered>false</filtered>
+		</fileSet>
+		<!-- Integration test wire mock data folder -->
+       <!--fileSet>
+            <directory>${project.build.directory}</directory>
+            <outputDirectory></outputDirectory>
+			<fileMode>0644</fileMode>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+            <excludes>
+                <exclude>original-*</exclude>
+            </excludes>
+        </fileSet-->
+        <!-- the order of these two conf dir are IMPORTANT!
+        according to https://maven.apache.org/plugins/maven-assembly-plugin/advanced-descriptor-topics.html
+        If two or more elements (e.g., file, fileSet) select different sources for the same file for archiving, 
+        only one of the source files will be archived. 
+        As per version 2.5.2 of the assembly plugin, the first phase to add the file to the archive "wins". -->
+		<fileSet>
+			<directory>src/main/conf/env/${app.env}</directory>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0644</fileMode>
+            <filtered>false</filtered>
+		</fileSet>
+		<fileSet>
+			<directory>src/main/conf/common</directory>
+			<outputDirectory>conf</outputDirectory>
+			<fileMode>0644</fileMode>
+            <filtered>false</filtered>
+		</fileSet>
+	</fileSets>
+</assembly>
